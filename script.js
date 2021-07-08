@@ -20,7 +20,7 @@ function createPaletteLine() {
   }
 }
 
-function createLine(index, number) {
+function createLine(index, number) { // Cria linha dentro coluna
   const column = document.querySelectorAll('#pixel-board .tr');
   let square;
   for (let i = 0; i < number; i += 1) {
@@ -41,7 +41,13 @@ function createColumn(number) {
   }
 }
 
+function selectBlack() { // Seleciona a cor preto
+  const palettaCor = document.querySelectorAll('.tr .color');
+  palettaCor[0].classList.add('selected');
+}
+
 window.onload = () => {
   createPaletteLine(); // 2, 3
-  createColumn(5); // 4
+  createColumn(5); // 4 , 5
+  selectBlack(); // 6
 };
