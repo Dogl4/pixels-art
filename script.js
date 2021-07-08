@@ -72,10 +72,23 @@ function getCorSelected() {
 }
 // References <https://flaviocopes.com/how-to-add-event-listener-multiple-elements-javascript/>
 
+function createButton() { // Cria botao Clear
+  const botao = document.createElement('button');
+  botao.innerText = 'Clear';
+  document.querySelector('header').appendChild(botao);
+  document.querySelector('button').addEventListener('click', () => {
+    const array = document.querySelectorAll('#pixel-board .tr .td');
+    array.forEach((e) => {
+      e.style.backgroundColor = 'rgb(250,250,250)';
+    });
+  });
+}
+
 window.onload = () => {
   createPaletteLine(); // 2, 3
   createColumn(5); // 4 , 5
   selectBlack(); // 6
   removeAndAddingClass(); // 7
   getCorSelected(); // 8
+  createButton(); // 9
 };
