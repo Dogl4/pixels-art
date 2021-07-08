@@ -1,0 +1,23 @@
+body {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.table {
+  display: table;
+}
+
+.tr {
+  display: table-row;  /* display igual a de uma linha de tabela*/
+}
+
+.td {
+  border: 1px solid #000000;
+  display: table-cell;  /* display igual a de uma coluna de tabela*/
+  width: 40px;
+  height: 40px;
+}
+
+#color-palette .color {
+  display: inline-block;
+  margin: 5px;
+}
