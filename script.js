@@ -1,12 +1,4 @@
-window.onload = () => {
-  createPaletteLine(); // 2
-
-};
-
-// Constantes globais;
-const palette = document.querySelectorAll('#color-palette .tr');
-
-// 2 Adicione à página uma paleta de quatro cores distintas.
+const palette = document.querySelectorAll('#color-palette .tr'); // Constantes globais;
 function corAleatoria() {
   const option = '0123456789ABCDEF';
   let hex = '';
@@ -22,5 +14,12 @@ function createPaletteLine() {
     paletteColor.className = 'color td';
     paletteColor.style.backgroundColor = corAleatoria();
     palette[0].appendChild(paletteColor);
+    if (i === 0) {
+      paletteColor.style.backgroundColor = '#000000';
+    }
   }
 }
+
+window.onload = () => {
+  createPaletteLine(); // 2
+};
