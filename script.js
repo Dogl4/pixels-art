@@ -20,6 +20,28 @@ function createPaletteLine() {
   }
 }
 
+function createLine(index, number) {
+  const column = document.querySelectorAll('#pixel-board .tr');
+  let square;
+  for (let i = 0; i < number; i += 1) {
+    square = document.createElement('div');
+    square.className = 'pixel td';
+    square.style.backgroundColor = '#ffffff';
+    column[index].appendChild(square);
+  }
+}
+
+function createColumn(number) {
+  const corpo = document.querySelector('#pixel-board');
+  for (let i = 0; i < number; i += 1) {
+    const filho = document.createElement('div');
+    filho.className = 'tr';
+    corpo.appendChild(filho);
+    createLine(i, number);
+  }
+}
+
 window.onload = () => {
-  createPaletteLine(); // 2
+  createPaletteLine(); // 2, 3
+  createColumn(5); // 4
 };
