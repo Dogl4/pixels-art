@@ -46,8 +46,24 @@ function selectBlack() { // Seleciona a cor preto
   palettaCor[0].classList.add('selected');
 }
 
+function removeAndAddingClass() { // Adiciona e remove Selexxted
+  const local = document.querySelectorAll('.tr .color');
+  for (let i = 0; i < local.length; i += 1) {
+    local[i].addEventListener('click', (event) => {
+      const corAntiga = document.querySelector('.selected');
+      const corAtual = event.target;
+      if (corAntiga !== corAtual) {
+        corAtual.classList.add('selected');
+        corAntiga.classList.remove('selected');
+      }
+    });
+  }
+}
+// References<https://www.w3schools.com/jsref/met_document_addeventlistener.asp | https://www.w3schools.com/jsref/event_target.asp>
+
 window.onload = () => {
   createPaletteLine(); // 2, 3
   createColumn(5); // 4 , 5
   selectBlack(); // 6
+  removeAndAddingClass(); // 7
 };
