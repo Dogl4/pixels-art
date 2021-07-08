@@ -61,9 +61,21 @@ function removeAndAddingClass() { // Adiciona e remove Selexxted
 }
 // References<https://www.w3schools.com/jsref/met_document_addeventlistener.asp | https://www.w3schools.com/jsref/event_target.asp>
 
+function getCorSelected() {
+  const local = document.querySelectorAll('#pixel-board .tr .td');
+  local.forEach((item) => {
+    item.addEventListener('click', (event) => {
+      const quadro = event.target.style;
+      quadro.backgroundColor = document.querySelector('.selected').style.backgroundColor;
+    });
+  });
+}
+// References <https://flaviocopes.com/how-to-add-event-listener-multiple-elements-javascript/>
+
 window.onload = () => {
   createPaletteLine(); // 2, 3
   createColumn(5); // 4 , 5
   selectBlack(); // 6
   removeAndAddingClass(); // 7
+  getCorSelected(); // 8
 };
