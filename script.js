@@ -74,7 +74,7 @@ function getCorSelected() {
 
 function createButton() { // Cria botao Clear
   const botao = document.createElement('button');
-  botao.innerText = 'Clear';
+  botao.innerText = 'Limpar';
   document.querySelector('header').appendChild(botao);
   document.querySelector('button').addEventListener('click', () => {
     const array = document.querySelectorAll('#pixel-board .tr .td');
@@ -84,11 +84,40 @@ function createButton() { // Cria botao Clear
   });
 }
 
+function createInput() { // Cria entrada de tabela
+  const entrada = document.createElement('input');
+  entrada.type = 'number';
+  entrada.min = '5';
+  entrada.max = '25';
+  document.querySelector('header').appendChild(entrada);
+}
+
+function recriaColuna() {
+  const elementoInput = document.querySelector('input');
+  elementoInput.addEventListener('change', () => {
+    const pai = document.querySelector('#pixel-board');
+    if (pai.children.length > 0) {
+      while (pai.firstChild) {
+        pai.removeChild(pai.firstChild);
+      }
+    }
+    if (elementoInput.value <= 5) {
+      elementoInput.value = 5;
+    }
+    if (elementoInput.value >= 50) {
+      elementoInput.value = 50;
+    }
+    createColumn(elementoInput.value);
+  });
+}
+
 window.onload = () => {
   createPaletteLine(); // 2, 3
-  createColumn(5); // 4 , 5
+  createColumn(5); // 4, 5
   selectBlack(); // 6
   removeAndAddingClass(); // 7
   getCorSelected(); // 8
   createButton(); // 9
+  createInput(); // 10
+  recriaColuna(); // 10
 };
