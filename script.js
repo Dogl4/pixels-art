@@ -1,4 +1,5 @@
 const palette = document.querySelectorAll('#color-palette .tr'); // Constantes globais;
+
 function corAleatoria() {
   const option = '0123456789ABCDEF';
   let hex = '';
@@ -31,7 +32,7 @@ function createLine(index, number) { // Cria linha dentro coluna
   }
 }
 
-function createColumn(number) {
+function createTable(number) {
   const corpo = document.querySelector('#pixel-board');
   for (let i = 0; i < number; i += 1) {
     const filho = document.createElement('div');
@@ -74,50 +75,62 @@ function getCorSelected() {
 
 function createButton() { // Cria botao Clear
   const botao = document.createElement('button');
+  botao.id = 'clear-board';
   botao.innerText = 'Limpar';
   document.querySelector('header').appendChild(botao);
   document.querySelector('button').addEventListener('click', () => {
     const array = document.querySelectorAll('#pixel-board .tr .td');
     array.forEach((e) => {
-      e.style.backgroundColor = 'rgb(250,250,250)';
+      e.style.backgroundColor = 'rgb(255,255,255)';
     });
   });
 }
 
 function createInput() { // Cria entrada de tabela
   const entrada = document.createElement('input');
+  const botao = document.createElement('button');
+  botao.id = 'generate-board';
+  botao.innerText = 'VQV';
   entrada.type = 'number';
-  entrada.min = '5';
-  entrada.max = '25';
+  entrada.id = 'board-size';
+  entrada.min = '1';
+  entrada.max = '50';
   document.querySelector('header').appendChild(entrada);
+  document.querySelector('header').appendChild(botao);
 }
 
-function recriaColuna() {
-  const elementoInput = document.querySelector('input');
-  elementoInput.addEventListener('change', () => {
-    const pai = document.querySelector('#pixel-board');
+function recriaTabela() {
+  const pai = document.querySelector('#pixel-board');
+  const boardSize = document.querySelector('#board-size');
+  const vqv = document.querySelector('#generate-board');
+  vqv.addEventListener('click', () => {
     if (pai.children.length > 0) {
       while (pai.firstChild) {
         pai.removeChild(pai.firstChild);
       }
     }
-    if (elementoInput.value <= 5) {
-      elementoInput.value = 5;
-    }
-    if (elementoInput.value >= 50) {
-      elementoInput.value = 50;
-    }
-    createColumn(elementoInput.value);
+    createTable(boardSize.value);
+    getCorSelected();
   });
 }
 
+function condicoes() {
+  const boardSize = document.querySelector('#generate-board');
+  if (boardSize.value < 5) {
+    boardSize.value = 5;
+  }
+  if (boardSize.value > 50) {
+    boardSize.value = 50;
+  }
+}
+
 window.onload = () => {
-  createPaletteLine(); // 2, 3
-  createColumn(5); // 4, 5
+  createPaletteLine(); // 2, 3 , 12
+  createTable(5); // 4, 5
   selectBlack(); // 6
   removeAndAddingClass(); // 7
   getCorSelected(); // 8
   createButton(); // 9
   createInput(); // 10
-  recriaColuna(); // 10
+  recriaTabela(); // 10
 };
