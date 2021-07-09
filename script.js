@@ -108,17 +108,22 @@ function deleta() {
   }
 }
 
+function condicoes() {
+  const boardSize = document.querySelector('#board-size');
+  if (boardSize.value < 5) {
+    boardSize.value = 5;
+  }
+  if (boardSize.value > 50) {
+    boardSize.value = 50;
+  }
+}
+
 function recriaTabela() {
   const vqv = document.querySelector('#generate-board');
   vqv.addEventListener('click', () => {
     const boardSize = document.querySelector('#board-size');
     if (boardSize.value >= 1) {
-      if (boardSize.value < 5) {
-        boardSize.value = 5;
-      }
-      if (boardSize.value > 50) {
-        boardSize.value = 50;
-      }
+      condicoes();
       deleta();
       createTable(boardSize.value);
       getCorSelected();
