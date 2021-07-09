@@ -1,5 +1,5 @@
 body {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .table {
@@ -7,12 +7,12 @@ body {
 }
 
 .tr {
-  display: table-row;  /* display igual a de uma linha de tabela*/
+  display: table-row;
 }
 
 .td {
-  border: 1px solid #000000;
-  display: table-cell;  /* display igual a de uma coluna de tabela*/
+  border: 1px solid rgb(0, 0, 0);
+  display: table-cell;
   width: 40px;
   height: 40px;
 }

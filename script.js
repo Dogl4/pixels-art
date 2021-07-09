@@ -99,29 +99,33 @@ function createInput() { // Cria entrada de tabela
   document.querySelector('header').appendChild(botao);
 }
 
-function recriaTabela() {
+function deleta() {
   const pai = document.querySelector('#pixel-board');
-  const boardSize = document.querySelector('#board-size');
-  const vqv = document.querySelector('#generate-board');
-  vqv.addEventListener('click', () => {
-    if (pai.children.length > 0) {
-      while (pai.firstChild) {
-        pai.removeChild(pai.firstChild);
-      }
+  if (pai.children.length > 0) {
+    while (pai.firstChild) {
+      pai.removeChild(pai.firstChild);
     }
-    createTable(boardSize.value);
-    getCorSelected();
-  });
+  }
 }
 
-function condicoes() {
-  const boardSize = document.querySelector('#generate-board');
-  if (boardSize.value < 5) {
-    boardSize.value = 5;
-  }
-  if (boardSize.value > 50) {
-    boardSize.value = 50;
-  }
+function recriaTabela() {
+  const vqv = document.querySelector('#generate-board');
+  vqv.addEventListener('click', () => {
+    const boardSize = document.querySelector('#board-size');
+    if (boardSize.value >= 1) {
+      if (boardSize.value < 5) {
+        boardSize.value = 5;
+      }
+      if (boardSize.value > 50) {
+        boardSize.value = 50;
+      }
+      deleta();
+      createTable(boardSize.value);
+      getCorSelected();
+    } else {
+      alert('Board inválido!');
+    }
+  });
 }
 
 window.onload = () => {
